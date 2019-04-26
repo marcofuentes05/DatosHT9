@@ -9,6 +9,9 @@ package Clases;
  *
  * @author fuent
  */
-public interface BST {
-    
+public interface BST <Key extends Comparable<Key>, Value> {
+    public void put(Key k, Value v);
+    public int size();
+    public boolean contains(Key key);
+    public Value get(Key key);
 }

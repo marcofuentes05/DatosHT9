@@ -6,8 +6,44 @@ package Clases;
  * Los autores originales de este código son Robert Sedgewick y Kevin Wayne. 
  * Código obtenido de https://algs4.cs.princeton.edu/33balanced/SplayBST.java.html en abril de 2019
  */
-public class SplayBST<Key extends Comparable<Key>, Value> implements BST{
+public class SplayBST<Key extends Comparable<Key>, Value> implements BST<Key,Value>{
      private Node root;   // root of the BST
+
+    @Override
+    public void put(Key key, Value value) {
+        // splay key to root
+        if (root == null) {
+            root = new Node(key, value);
+            return;
+        }
+        
+        root = splay(root, key);
+
+        int cmp = key.compareTo(root.key);
+        
+        // Insert new node at root
+        if (cmp < 0) {
+            Node n = new Node(key, value);
+            n.left = root.left;
+            n.right = root;
+            root.left = null;
+            root = n;
+        }
+
+        // Insert new node at root
+        else if (cmp > 0) {
+            Node n = new Node(key, value);
+            n.right = root.right;
+            n.left = root;
+            root.right = null;
+            root = n;
+        }
+
+        // It was a duplicate key. Simply replace the value
+        else {
+            root.value = value;
+        }
+    }
 
     // BST helper node data type
     private class Node {
@@ -37,6 +73,7 @@ public class SplayBST<Key extends Comparable<Key>, Value> implements BST{
    /***************************************************************************
     *  Splay tree insertion.
     ***************************************************************************/
+    /*@Override
     public void put(Key key, Value value) {
         // splay key to root
         if (root == null) {
@@ -71,7 +108,7 @@ public class SplayBST<Key extends Comparable<Key>, Value> implements BST{
             root.value = value;
         }
 
-    }
+    }*/
     
    /***************************************************************************
     *  Splay tree deletion.
