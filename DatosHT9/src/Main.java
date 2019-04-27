@@ -53,10 +53,7 @@ public class Main {
                     }
                     //System.out.println(cosas.size());
                 }
-                System.out.println("1 "+cosas.get(0));
-                System.out.println("2 "+cosas.get(1));
                 arbol.put(cosas.get(0),cosas.get(1));
-                System.out.println(arbol.get(cosas.get(0)));
             }
             System.out.println("Tamanno es: "+arbol.size());
         }catch(Exception e){
@@ -73,9 +70,6 @@ public class Main {
                 String [] palabras = oracion.split(" ");
                 for(int i =0;i<palabras.length;i++){
                     String palabra = palabras[i];
-                    
-                    
-                    System.out.println(arbol.get(palabra));
                     if(arbol.contains(palabra)){
                         
                         traduccion += arbol.get(palabra);
