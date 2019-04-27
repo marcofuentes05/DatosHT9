@@ -1,5 +1,4 @@
 
-import Clases.*;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -32,7 +31,7 @@ public class Main {
         try{
             FileReader f = new FileReader(archivo);
             BufferedReader b = new BufferedReader(f);
-            
+            //Aqui se llena el arbol
             while((cadena = b.readLine()) != null){
                 //System.out.println(cadena);
                 cadena = cadena.toLowerCase();
@@ -51,15 +50,14 @@ public class Main {
                     if(i == temp.length-1){
                         cosas.add(a);
                     }
-                    //System.out.println(cosas.size());
                 }
                 arbol.put(cosas.get(0),cosas.get(1));
             }
-            System.out.println("Tamanno es: "+arbol.size());
         }catch(Exception e){
             e.printStackTrace();
         }
         
+        //Aqui se traduce el mensaje
         try{
             FileReader fr = new FileReader(traducir);
             BufferedReader br = new BufferedReader(fr);
@@ -71,7 +69,6 @@ public class Main {
                 for(int i =0;i<palabras.length;i++){
                     String palabra = palabras[i];
                     if(arbol.contains(palabra)){
-                        
                         traduccion += arbol.get(palabra);
                     }else{
                         traduccion += "*"+palabra+"*";
@@ -83,5 +80,8 @@ public class Main {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+    public void translate(String traducir){
+        
     }
 }
